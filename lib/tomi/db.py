@@ -14,9 +14,8 @@ CREATE TABLE     messages (
     id           INTEGER PRIMARY KEY,
     content      CHAR(1000) NOT NULL,
     date         DATE NOT NULL
-)"""
+)""",
 ]
-
 
 class DBException(Exception):
     pass
@@ -46,3 +45,14 @@ def create_database(logger):
         log.info("Creating database")
         for statement in schema:
             c.execute(statement)
+
+def get_all_messages():
+    """Return a list of all stored messages, ordered from newest to oldest"""
+    # TODO: truncate list to N messages?
+    messages = []
+    query = "SELECT content FROM messages ORDER BY date DESC"
+    with get_cursor(False) as c:
+        res = c.execute(query)
+        for r in c.fetchall():
+            messages.append(r[0])
+    return messages

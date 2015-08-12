@@ -14,7 +14,7 @@ path_static    = os.path.join(path_here, '..', 'static')
 
 sys.path.append(path_libs)
 
-from tomi.common import setup_logging
+from tomi.common import setup_logging, create_http_response
 import tomi.db as db
 
 
@@ -26,6 +26,17 @@ log = None
 app = Flask(__name__,
             template_folder=path_templates,
             static_folder=path_static)
+
+#
+# REST api
+#
+
+@app.route("/api/v0/messages", methods=['GET'])
+def list_messages():
+    # messages: a list of all messages, ordered from newest to oldest
+    messages = db.get_all_messages()
+    log.debug("Returning %s last messages" % len(messages))
+    return create_http_response({"messages": messages}, 200)
 
 #
 # Serve website pages
