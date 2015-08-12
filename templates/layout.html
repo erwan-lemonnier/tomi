@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tomi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap.css" rel="stylesheet" media="screen">
+    <script src="/static/jquery-1.11.2.min.js"></script>
+    <script src="/static/bootstrap.js"></script>
+  </head>
+  <body role="document">
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">Front</a>
+          </div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/admin">Admin</a>
+          </div>
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/about">About</a>
+          </div>
+        </div>
+      </nav>
+      <div class="page-header">
+        <h1>{% block title %}{% endblock %}</h1>
+      </div>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
