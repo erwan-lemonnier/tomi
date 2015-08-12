@@ -1,0 +1,8 @@
+Rough plan for the coming commits:
+
+- write timo.js:list_messages() that calls api/v0/messages using jquery and loads messages into front.html
+- add submit field in front.html to post a message
+- implement server-side message storage into db
+- call list_messages() after posting messages (wait for new message to be stored?)
+
+- implement login box on admin.html. TODO: break down into smaller tasks
