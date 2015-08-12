@@ -15,6 +15,7 @@ path_static    = os.path.join(path_here, '..', 'static')
 sys.path.append(path_libs)
 
 from tomi.common import setup_logging
+import tomi.db as db
 
 
 server_ip = '127.0.0.1'
@@ -49,5 +50,6 @@ def handle_yearly_transactions():
 
 if __name__ == '__main__':
     log = setup_logging('www')
+    db.create_database(log)
     log.info("Starting www server on %s:%s" % (server_ip, server_port))
     app.run(debug=True, host=server_ip, port=server_port)
